@@ -1,0 +1,26 @@
+Name:           esp
+Version:        0.2.0
+Author:         Louis Wasserman
+License:        BSD3
+Maintainer:     Louis Wasserman <wasserman.louis@gmail.com>
+Stability:      experimental
+
+cabal-version:  >= 1.2
+build-type:     Simple
+
+
+extra-source-files: Schedule.java
+
+Executable esp-schedule {
+ Main-is:        Main.hs
+ Build-Depends:    base >= 4 && < 5, hxt, parsec >= 3, containers == 0.3.0.0, deepseq, glpk-hs, parallel, process, unamb
+ other-modules:
+  ESP.Common
+  ESP.LP.Types
+  ESP.XMLOutput
+  ESP.ExtSched
+  ESP.XMLParser
+  ESP.LP
+  ESP.Scheduler
+  Main
+}

@@ -1,0 +1,51 @@
+<block id="1" name="10-11AM" />
+<block id="2" name="11-12PM" />
+<block id="3" name="12-1PM" />
+<block id="4" name="1-2PM" />
+<resource id="1" fixed="0" name="AV" avail="1" />
+<room id="1" name="Harper 130" capacity="70">
+	<has-resource id="0" />
+</room>
+<room id="2" name="Harper 135" capacity="15" />
+<room id="3" name="Harper 140" capacity="35" />
+<teacher id="0" name="Louis">
+	<available block="1" />
+	<available block="2" />
+	<available block="3" />
+</teacher>
+<teacher id="1" name="DanZ">
+	<available block="1" />
+	<available block="2" />
+</teacher>
+<teacher id="2" name="Anya">
+	<available block="1" />
+	<available block="2" />
+</teacher>
+<teacher id="3" name="Nalika">
+	<available block="1" />
+	<available block="2" />
+</teacher>
+<teacher id="4" name="Rhochelle">
+	<available block="2" />
+	<available block="3" />
+	<available block="4" />
+</teacher>
+<class id="0" name="Computing" cap="15" sections="2" duration="1">
+	<needs-resource id="1" qty="1" />
+	<class-teacher id="0" />
+</class>
+<class id="1" name="Algebra" cap="6" duration="2">
+	<class-teacher id="1" />
+</class>
+<class id="2" name="Human Rights" cap="30">
+	<class-teacher id="2" />
+	<class-teacher id="3" />
+</class>
+<class id="3" name="Harry Potter" cap="50">
+	<class-teacher id="1" />
+	<class-teacher id="4" />
+	<needs-resource id="1" />
+</class>
+<class id="4" name="Aristotle" cap="15">
+	<class-teacher id="4" />
+</class>
