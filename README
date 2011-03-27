@@ -3,3 +3,7 @@ This represents my winter-to-spring 2010 attempt to autoschedule classes for Lea
 The Haskell code is primarily used to read the XML, generate an integer linear program in CPLEX format,
 and bind to the GLPK linear programming library.  I wrote a simple simulated annealer in Java in the hopes
 of minimizing walking distance between rooms, but this really wasn't necessary in retrospect.
+
+test-program.xml represents the XML format I'd decided on to describe LU programs.  Michael Price had,
+in the past, gotten me "problem instances" in this format from the current LU systems, and that'd probably
+still work.
