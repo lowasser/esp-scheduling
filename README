@@ -1,0 +1,5 @@
+This represents my winter-to-spring 2010 attempt to autoschedule classes for Learning Unlimited programs.
+
+The Haskell code is primarily used to read the XML, generate an integer linear program in CPLEX format,
+and bind to the GLPK linear programming library.  I wrote a simple simulated annealer in Java in the hopes
+of minimizing walking distance between rooms, but this really wasn't necessary in retrospect.
