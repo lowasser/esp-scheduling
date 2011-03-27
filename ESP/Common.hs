@@ -5,7 +5,7 @@ module ESP.Common (module Control.Monad, module Data.IntMap, module Data.Maybe, 
 	(<$>), (&&&), second, Teacher, Room, Class, Time, Resource, IntSet, TeacherSet,
 	RoomSet, ClassSet, TimeSet, ResourceSet, TeacherMap, RoomMap, ClassMap, TimeMap, ResourceMap, TeacherInfo(..),
 	ClassInfo(..), ResourceInfo(..), RoomInfo(..), mkSet, writeXMLTree, writeXMLTrees, Subject, SubjectMap, SubjectInfo(..),
-	requireConsecutive, writeDoc, readXMLTrees, delWS) where
+	writeDoc, readXMLTrees, delWS) where
 
 -- import ESP.Algebra
 import Data.Bits
@@ -140,31 +140,6 @@ strReplace find rep target = replacer target where
 			| otherwise	= y:replacer ys
 		rep' [] zs = rep ++ replacer zs
 	  in rep' find (y:ys)
-
-data IL a = C !Int a (IL a) | Nil
-
--- Takes O(n log k).
-requireConsecutive :: Int -> IntMap () -> IntMap ()
-requireConsecutive k m = reqCon k 1 0 mIL mIL
-	where	mIL  = toIL m
-		toIL = foldWithKey C Nil
-		isectIL l10@(C k1 a1 l1) l20@(C k2 _ l2) = case compare k1 k2 of
-			LT	-> isectIL l1 l20
-			EQ	-> C k1 a1 (isectIL l1 l2)
-			GT	-> isectIL l10 l2
-		isectIL _ _ = Nil
-		subMono :: Int -> IL a -> IL a
-		subMono !i (C k v l) = C (k - i) v (subMono i l)
-		subMono _ _ = Nil
-		reqCon !k !x !s p m'
-			| k == 0	= let	toL (C k a l) = (k, a):toL l
-						toL _ = []
-						in fromDistinctAscList (toL m')
-			| testBit k 0	= reqCon (k `shiftR` 1) (x * 2) (s + x) p'
-						(m' `isectIL` subMono s p)
-			| otherwise	= reqCon (k `shiftR` 1) (x * 2) s p' m'
-			where	p' = p `isectIL` subMono x p
-		
 
 mapKeysMonotonic :: (Int -> Int) -> IntMap a -> IntMap a
 mapKeysMonotonic f m = fromDistinctAscList [(f k, v) | (k, v) <- assocs m]
